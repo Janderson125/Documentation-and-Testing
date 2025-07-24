@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: Mechanic API
+  version: "1.0"
+servers:
+  - url: http://localhost:5000
+paths:
+  /mechanics:
+    get:
+      tags:
+        - Mechanics
+      summary: Get all mechanics
+      description: Retrieve a list of all mechanics
+      responses:
+        '200':
+          description: A list of mechanics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mechanic'
+    post:
+      tags:
+        - Mechanics
+      summary: Create a mechanic
+      description: Add a new mechanic (requires JWT token)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MechanicPayload'
+      responses:
+        '201':
+          description: Mechanic created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mechanic'
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+  /mechanics/{id}:
+    get:
+      tags:
+        - Mechanics
+      summary: Get mechanic by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Mechanic found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mechanic'
+        '404':
+          description: Mechanic not found
+    put:
+      tags:
+        - Mechanics
+      summary: Update mechanic by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MechanicPayload'
+      responses:
+        '200':
+          description: Mechanic updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mechanic'
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+        '404':
+          description: Mechanic not found
+    delete:
+      tags:
+        - Mechanics
+      summary: Delete mechanic by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Mechanic deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Mechanic not found
+
+  /customers:
+    get:
+      tags:
+        - Customers
+      summary: G
