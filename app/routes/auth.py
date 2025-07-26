@@ -3,14 +3,13 @@ from flask_jwt_extended import create_access_token
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-# For demo, hard-coded user
 USERS = {
     "admin": "password123"
 }
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    data = request.get_json()  # Make sure this is `data`, not `da`
     username = data.get('username')
     password = data.get('password')
 

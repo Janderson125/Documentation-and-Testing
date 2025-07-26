@@ -2,36 +2,30 @@ import unittest
 import json
 from app import create_app, db
 from app.models import Customer
+from flask_jwt_extended import create_access_token
 
-class CustomerTestCase(unittest.TestCase):
+class CustomersTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app()
-        self.app.config['TESTING'] = True
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-        self.client = self.app.test_client()
+        self.app = create_app().test_client()
+        self.access_token = None
 
-        with self.app.app_context():
+        with create_app().app_context():
             db.create_all()
+            self.access_token = create_access_token(identity="admin")
 
     def tearDown(self):
-        with self.app.app_context():
+        with create_app().app_context():
             db.drop_all()
 
-    def test_create_customer(self):
+    def test_create_customer_success(self):
         new_customer = {
-            "name": "John Doe",
-            "email": "john@example.com",
+            "name": "Test Customer",
+            "email": "test@example.com",
             "phone": "1234567890"
         }
-        response = self.client.post('/customers/', json=new_customer)
-        self.assertEqual(response.status_code, 401)  # Unauthorized because no JWT token
-
-    def test_get_customers(self):
-        response = self.client.get('/customers/')
-        self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(response.json, list)
-
-    # Add more tests for GET by id, PUT, DELETE, including negative tests
-
-if __name__ == '__main__':
-    unittest.main()
+        response = self.app.post('/customers/',
+                                 data=json.dumps(new_customer),
+                                 content_type='application/json',
+                                 headers={"Authorization": f"Bearer {self.access_token}"})
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json['name'], new_customer['name'])

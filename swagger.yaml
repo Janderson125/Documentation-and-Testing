@@ -1,0 +1,103 @@
+i
+Swagger Editor has evolved! Codegen, save, and export features are now part of Swagger Pro.
+Learn More    Try Swagger Pro
+
+File
+Import URL
+Import file
+Save as YAML
+Convert and save as JSON
+Clear editor
+Edit
+Insert
+Generate Server
+Generate Client
+About
+Sign in to Swagger Pro
+Try Swagger Pro
+
+Mechanic API
+ 1.0.0 
+OAS 3.0
+API for managing mechanics and customers with JWT authentication.
+
+Servers
+
+http://localhost:5000
+
+Authorize
+Authentication
+
+
+POST
+/auth/login
+User login to get JWT token
+Jump to definition
+Customers
+
+
+GET
+/customers
+Get all customers
+Jump to definition
+
+POST
+/customers
+Create a new customer
+
+Jump to definition
+
+GET
+/customers/{id}
+Get a customer by ID
+Jump to definition
+
+PUT
+/customers/{id}
+Update a customer by ID
+
+Jump to definition
+
+DELETE
+/customers/{id}
+Delete a customer by ID
+
+Jump to definition
+Mechanics
+
+
+GET
+/mechanics
+Get all mechanics
+Jump to definition
+
+POST
+/mechanics
+Create a new mechanic
+
+Jump to definition
+
+GET
+/mechanics/{id}
+Get a mechanic by ID
+Jump to definition
+
+PUT
+/mechanics/{id}
+Update a mechanic by ID
+
+Jump to definition
+
+DELETE
+/mechanics/{id}
+Delete a mechanic by ID
+
+Jump to definition
+
+Schemas
+Jump to definitionCustomer
+Jump to definitionCustomerInput
+Jump to definitionMechanic
+Jump to definitionMechanicInput
+Not available in hosted editor.
+Try Swagger Pro 
