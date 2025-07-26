@@ -1,15 +1,7 @@
 # Mechanic API
 
-## Overview
-This Flask REST API manages mechanics and customers. It includes:
+This is a RESTful API for managing **mechanics** and **customers**, built using **Flask**, **SQLAlchemy**, and **JWT Authentication**. It also includes full **Swagger (OpenAPI 3.0)** documentation and unit testing with **unittest**.
 
-- JWT authentication
-- CRUD routes for mechanics and customers
-- Swagger UI documentation at `/swagger`
-- Unit tests for all routes
+---
 
-## Setup
-
-1. Clone the repo
-2. Create and activate a Python virtual environment
-3. Install dependencies:
+##  Project Structure
